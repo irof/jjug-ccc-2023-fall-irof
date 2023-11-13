@@ -6,7 +6,7 @@ JJUG CCC 2023 Fall Gatlingによる負荷テスト入門
 アプリケーション単体の動作確認や、負荷テストツールの勉強用と割り切って使用してください。
 
 ## 資料
-TBD
+[Gatlingによる負荷テスト入門 - Speaker Deck](https://speakerdeck.com/irof/gatlingniyorufu-he-tesutoru-men)
 
 ### セッション概要
 負荷テストをやったことない人から雰囲気でやっている人向けの入門セッションです。
@@ -61,10 +61,10 @@ ab -n 100 -c 20 http://localhost:8080/external
 アクティブユーザー数変遷を意図通りに描けると負荷テスト捗ります。
 実際こんなInjectionが欲しくなることはそんなにないはずですが。
 
-`DemoSimulation` の部分はほかに
+`DemoSimulation` の部分はほかに以下。
 - `SlideSimulation`
 - `HealthSimulation`
 - `PatternSimulation -Dpattern=db`
   - `simple`, `db`, `external`, `sleep` が使えます
 
-
+内容は各Simulationやクラスのコメントを参照してください。
