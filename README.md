@@ -45,7 +45,7 @@ Grafanaがセットアップできていない場合は、スレッドやメモ�
 - もいいですが、こういう時に `ab` とかも。
 
 ```shell
-ab -n 100 -c 20 http://localhost:8080/external
+ab -n 100 -c 20 http://localhost:8080/simple
 ```
 
 - トレース http://localhost:9411/zipkin/
@@ -56,6 +56,8 @@ ab -n 100 -c 20 http://localhost:8080/external
 ````shell
 ./gradlew gatlingRun-DemoSimulation
 ````
+
+実行が正常にできれば `./gatling/build/reports/gatling/` にHTMLのレポートが出ます。
 
 このデモはアクティブユーザー数をコロコロ変えるのがテーマです。
 アクティブユーザー数変遷を意図通りに描けると負荷テスト捗ります。
