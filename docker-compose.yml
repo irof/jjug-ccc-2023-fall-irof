@@ -1,0 +1,27 @@
+services:
+  zipkin:
+    image: openzipkin/zipkin:2.24.3
+    ports:
+      - "9411:9411"
+  wiremock:
+    container_name: wiremock
+    image: wiremock/wiremock:3.2.0-3
+    ports:
+      - "9000:8080"
+    volumes:
+      - ./docker/wiremock:/home/wiremock
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.47.2
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./docker/prometheus/data:/prometheus
+    ports:
+      - 9090:9090
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:10.2.0
+    volumes:
+      - ./docker/grafana/storage:/var/lib/grafana
+    ports:
+      - 3000:3000

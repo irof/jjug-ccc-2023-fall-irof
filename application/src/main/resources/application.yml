@@ -1,0 +1,43 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+      # /actuator/health/liveness, /actuator/health/readiness を有効にする。
+      # https://spring.pleiades.io/spring-boot/docs/3.1.2/reference/html/actuator.html#actuator.endpoints.kubernetes-probes
+      probes:
+        enabled: true
+  tracing:
+    sampling:
+      # すべてサンプリング対象にする。デフォルトは0.1
+      probability: 1.0
+  server:
+    port: ${server.port}
+
+server:
+  port: 8080
+  tomcat:
+    threads:
+      # 挙動確認用にハンドラスレッドを思いっきり下げておく。デフォルトは200
+      max: 20
+      # maxにあわせておく。やらなくてもmaxはこえなさそうだけど。デフォルトは10
+      min-spare: ${server.tomcat.threads.max}
+    mbeanregistry:
+      # tomcatのメトリクスを公開する。
+      # https://spring.pleiades.io/spring-boot/docs/3.1.3/reference/html/howto.html#howto.webserver.enable-tomcat-mbean-registry
+      enabled: true
+
+spring:
+  datasource:
+    hikari:
+      # 挙動確認用の設定。ハンドラスレッドより少なくする。デフォルト10
+      maximum-pool-size: 10
+logging:
+  pattern:
+    level: "%5p [%X{traceId:-},%X{spanId:-}]"
+my:
+  external:
+    url: http://localhost:9000
